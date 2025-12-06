@@ -362,7 +362,7 @@ function renderProgressBar(task) {
 // REGISTRO PWA (SERVICE WORKER)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('service-worker.js')
       .then(registration => {
         console.log('ServiceWorker registrado con éxito:', registration.scope);
       })
