@@ -1,13 +1,13 @@
 const CACHE_NAME = 'smart-task-counter-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/estilo.css',
-  '/scriptlogica.js',
-  '/manifest.json',
+  '.',
+  'index.html',
+  'estilo.css',
+  'scriptlogica.js',
+  'manifest.json',
   // Rutas de íconos:
-  '/icon-192.png', 
-  '/icon-512.png'
+  'icon-192.png', 
+  'icon-512.png'
 ];
 
 // Instalar Service Worker y cachear archivos

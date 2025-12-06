@@ -2,7 +2,7 @@
   "name": "El Contador de Tareas Inteligente",
   "short_name": "TaskFlow",
   "description": "Gestor de tareas con priorización inteligente, sub-tareas y progreso.",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ecf0f1",
   "theme_color": "#121ea2",
