@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Contador de Tareas Inteligente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <h1>CONTADOR DE TAREAS</h1>
+        <p id="global-counter">Cargando...</p> </header>
+
+    <main>
+        <section class="task-input">
+            <h2><i class="fas fa-pen-nib"></i> Creación de nueva tarea</h2>
+            
+            <input type="text" id="task-title" placeholder="Título de la nueva tarea principal">
+            <select id="task-priority"> 
+                <option value="" disabled selected>Selecciona Prioridad</option>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select>
+            
+            <input type="datetime-local" id="task-deadline" title="Plazo de vencimiento de la tarea">
+
+            <button onclick="addTask()"><i class="fas fa-plus-circle"></i> Añadir tarea</button>
+        </section>
+
+        <section class="filters">
+            <button onclick="filterTasks('all')"><i class="fas fa-list-ul"></i> Todas</button>
+            <button onclick="filterTasks('pending')"><i class="fas fa-clock"></i> Pendientes</button>
+            <button onclick="filterTasks('completed')"><i class="fas fa-check-double"></i> Completadas</button>
+        </section>
+
+        <section class="search-input">
+            <input type="text" id="task-search" onkeyup="searchTasks()" placeholder="🔍 Buscar tareas por título o fecha">
+        </section>
+        
+        <section class="task-columns-container">
+            
+            <div class="task-column" id="column-alta">
+                <h2><i class="fas fa-fire"></i> ALTA PRIORIDAD</h2>
+                <ul class="task-list" data-priority="alta">
+                    </ul>
+            </div>
+            
+            <div class="task-column" id="column-media">
+                <h2><i class="fas fa-exclamation-triangle"></i> MEDIA PRIORIDAD</h2>
+                <ul class="task-list" data-priority="media">
+                     </ul>
+            </div>
+            
+            <div class="task-column" id="column-baja">
+                <h2><i class="fas fa-clipboard-list"></i> BAJA PRIORIDAD</h2>
+                <ul class="task-list" data-priority="baja">
+                     </ul>
+            </div>
+            
+        </section>
+
+    </main>
+
+    <script src="scriptlogica.js"></script>
+</body>
+</html>

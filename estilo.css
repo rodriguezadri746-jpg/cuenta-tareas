@@ -1,0 +1,369 @@
+/* Fuente de google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+:root {
+    /* Color principal (Header y filtro activo) */
+    --primary-color: #121ea2; 
+    /* Color secundario (Botón añadir tarea) */
+    --secondary-color: #1abc9c; 
+    /* Color terciario (para diferenciar el hover de los filtros) */
+    --tertiary-color: #2499cf; 
+    
+    --background-light: #ecf0f1; 
+    --text-color-dark: #34495e; 
+    
+    /* Colores de prioridad */
+    --priority-alta: #e74c4c; 
+    --priority-media: #f39c12; 
+    --priority-baja: #3498db; 
+
+    --completed-bg: #dcf1ea; 
+    --completed-border: #16a085;
+}
+
+/* ------------------ ANIMACIONES ------------------ */
+
+/* Animación de entrada para las tareas */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación de alarma */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+/* Rebote para el título principal */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); 
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ------------------ ESTILOS BASE ------------------ */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color-dark);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Encabezado con color primario */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    /* Aplicación de la animación de rebote */
+    animation: bounce 2s ease-in-out infinite; 
+    display: inline-block; 
+}
+
+#global-counter {
+    font-size: 1.2em;
+    font-weight: 600; 
+    opacity: 1; 
+    display: block;
+}
+
+main {
+    max-width: 1200px; 
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ------------------ INPUTS Y CONTROLES ------------------ */
+
+.task-input {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.task-input, .filters, .search-input {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.task-input input[type="text"], 
+.task-input select,
+.task-input input[type="datetime-local"] {
+    padding: 14px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    flex: 1; 
+}
+
+.task-input button {
+    padding: 14px 25px;
+    background-color: var(--secondary-color); /* Color base: secundario */
+    color: var(--text-color-dark);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.task-input button:hover {
+    /* Hover: Tono más oscuro de secundario. */
+    background-color: #16a085; 
+}
+
+/* Filtros y buscador */
+.filters {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Estilo base para los botones de filtro */
+.filters button {
+    padding: 10px 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    background-color: white; 
+    color: var(--text-color-dark);
+}
+
+.filters button:hover {
+    /* Hover: Usa el color terciario, distinto de Header (Primario) y añadir tarea (Secundario) */
+    background-color: var(--tertiary-color); 
+    color: white; 
+    border-color: var(--tertiary-color);
+}
+
+/* Estilo para el botón de filtro activo */
+.filters button.active {
+    /* Activo: Usa el color primario */
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.search-input input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #376786;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+}
+
+/* ------------------ LAYOUT DE TRES COLUMNAS ------------------ */
+
+.task-columns-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.task-column {
+    flex: 1; 
+    background-color: #fcfcfc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    min-height: 400px; 
+}
+
+.task-column h2 {
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+/* Estilos de título por columna */
+#column-alta h2 { color: var(--priority-alta); border-bottom: 4px solid var(--priority-alta); }
+#column-media h2 { color: var(--priority-media); border-bottom: 4px solid var(--priority-media); }
+#column-baja h2 { color: var(--priority-baja); border-bottom: 4px solid var(--priority-baja); }
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+/* ------------------ TARJETA DE TAREA INDIVIDUAL ------------------ */
+
+.main-task {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out; /* Animación al añadir */
+}
+
+.main-task:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+}
+
+.priority-alta { border-left: 8px solid var(--priority-alta); }
+.priority-media { border-left: 8px solid var(--priority-media); }
+.priority-baja { border-left: 8px solid var(--priority-baja); }
+
+/* ------------------ ALARMA Y PLAZO ------------------ */
+
+.deadline-info {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+}
+
+.deadline-warning {
+    color: white;
+    background-color: var(--priority-alta); 
+    animation: pulse 1.5s infinite alternate; 
+}
+
+.deadline-ok {
+    color: var(--text-color-dark);
+    background-color: #f0f0f0;
+}
+
+/* ------------------ ESTILOS (Progreso, subtareas, etc) ------------------ */
+
+.completed-task {
+    background-color: var(--completed-bg);
+    border-left: 8px solid var(--completed-border) !important;
+    opacity: 0.8;
+}
+
+/* ------------------ BARRA DE PROGRESO ------------------ */
+.progress-bar-container {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden; 
+}
+
+.progress-bar {
+    height: 100%;
+    background: #2ecc71; 
+    background-image: linear-gradient(to right, #27ae60, #16a085);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.4s ease-in-out;
+    width: 0%; 
+}
+
+.delete-btn {
+    float: right;
+    background-color: var(--priority-alta);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* ------------------ EDICIÓN RÁPIDA ------------------ */
+
+/* Permite al usuario saber que un elemento es editable */
+.main-task h3,
+.subtask-management label {
+    cursor: pointer;
+}
+
+/* Estilo visual cuando se está editando */
+.main-task h3[contenteditable="true"]:focus {
+    border: 1px dashed var(--primary-color);
+    background-color: #fcf8e3; 
+    padding: 5px;
+    margin: -5px 0 5px -5px;
+    outline: none;
+}
+
+.subtask-management label[contenteditable="true"]:focus {
+    border-bottom: 1px dashed var(--secondary-color);
+    background-color: #fcf8e3;
+    padding: 2px 0;
+    outline: none;
+}
+
+/* ADAPTACIÓN MÓVIL */
+
+@media (max-width: 768px) {
+    /* Contenedor principal de columnas: Las apilamos */
+    .task-columns-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Ocupar el ancho completo en el móvil */
+    main {
+        padding: 0 10px;
+    }
+
+    /* Columna de tareas */
+    .task-column {
+        min-height: auto; 
+        padding: 15px;
+    }
+
+    /* Formulario de input y filtros */
+    .task-input {
+        flex-direction: column; /* Apila los inputs y el botón verticalmente */
+    }
+
+    /* Botones de Filtro */
+    .filters {
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+    .filters button {
+        flex: 1 1 45%; /* Dos botones por fila */
+        padding: 12px 10px;
+    }
+
+    /* Tarea principal */
+    .main-task {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    /* Botón de eliminar */
+    .delete-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+}
