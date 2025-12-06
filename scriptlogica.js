@@ -285,7 +285,7 @@ function renderTasks() {
         let taskHTML = `
             <div>
                 <h3 contenteditable="true" onblur="editTaskTitle(this, ${task.id})">${task.title} ${priorityTag}</h3>
-                <button class="delete-btn" onclick="deleteTask(${task.id})"><i class="fas fa-trash-alt"></i> Eliminar (R3)</button>
+                <button class="delete-btn" onclick="deleteTask(${task.id})"><i class="fas fa-trash-alt"></i> Eliminar </button>
             </div>
             
             ${renderDeadline(task)} 
@@ -372,5 +372,31 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// Variable para guardar el evento de instalación
+let deferredPrompt; 
+const installSection = document.getElementById('install-section'); 
+
+// 1. CAPTURAR EL EVENTO: Evitamos el banner automático y guardamos el evento
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  // Guardamos el evento para poder llamarlo con el botón
+  deferredPrompt = e;
+  // Hacemos visible la sección de instalación
+  installSection.style.display = 'block'; 
+});
+
+// 2. FUNCIÓN DE INSTALACIÓN: Llamada cuando el usuario pulsa el botón
+function installApp() {
+  if (deferredPrompt) {
+    // Muestra el diálogo de instalación
+    deferredPrompt.prompt(); 
+    
+    // Oculta el botón personalizado después de mostrar el prompt
+    installSection.style.display = 'none'; 
+    
+    // Reseteamos la variable, ya que solo se puede usar una vez
+    deferredPrompt = null;
+  }
+}
 // Llamada de inicio
 init();
